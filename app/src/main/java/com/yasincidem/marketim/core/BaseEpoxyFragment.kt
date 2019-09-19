@@ -24,7 +24,7 @@ abstract class BaseEpoxyFragment : BaseMvRxFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_base_mvrx, container, false).apply {
+        return inflater.inflate(R.layout.fragment_base_epoxy, container, false).apply {
             recyclerView = findViewById(R.id.recycler_view)
             recyclerView.setController(epoxyController)
         }
