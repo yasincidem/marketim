@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Marketim</string>
+    <string name="BASE_URL_ORDER_LIST" translatable="false" formatted="false">http://kariyertechchallenge.mockable.io/</string>
+    <string-array name="aylar">
+        <item>Ocak</item>
+        <item>Şubat</item>
+        <item>Mart</item>
+        <item>Nisan</item>
+        <item>Mayıs</item>
+        <item>Haziran</item>
+        <item>Temmuz</item>
+        <item>Ağustos</item>
+        <item>Eylül</item>
+        <item>Ekim</item>
+        <item>Kasım</item>
+        <item>Aralık</item>
+    </string-array>
 </resources>
