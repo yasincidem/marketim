@@ -15,4 +15,13 @@
         <item>Kasım</item>
         <item>Aralık</item>
     </string-array>
+    <string name="username">Kullanıcı Adı</string>
+    <string name="password">Şifre</string>
+    <string name="rememberme">Beni Hatırla</string>
+    <string name="login">Giriş</string>
+    <string name="wrong_credentials_warning">Girdiğiniz bilgiler yanlış.Lütfen tekrar deneyiniz.</string>
+    <string name="credential_username">kariyer</string>
+    <string name="credential_password">2019ADev</string>
+    <string name="login_form_fragment_title">Giriş Formu</string>
+    <string name="order_list_fragment_title">Siparişlerim</string>
 </resources>

@@ -3,4 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="cargo">#43A047</color>
+    <color name="preparing">#FB8C00</color>
+    <color name="waiting_for_approve">#E53935</color>
 </resources>
