@@ -22,6 +22,10 @@ class OrderListViewModel(
         }
     }
 
+    fun requestExpand() {
+        setState { copy(isExpanded = !isExpanded) }
+    }
+
     companion object : MvRxViewModelFactory<OrderListViewModel, OrderListState> {
         override fun create(viewModelContext: ViewModelContext, state: OrderListState): OrderListViewModel {
             val service: OrderListService by viewModelContext.activity.inject()
