@@ -2,8 +2,8 @@ package com.yasincidem.marketim.views
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
+import androidx.core.content.ContextCompat
 import com.airbnb.epoxy.CallbackProp
 import com.airbnb.epoxy.ModelView
 import com.airbnb.epoxy.TextProp
@@ -16,21 +16,15 @@ class Order @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private val dateTV: TextView
-    private val monthTV: TextView
-    private val marketNameTV: TextView
-    private val orderNameTV: TextView
-    private val productStateTV: TextView
-    private val productPriceTV: TextView
+    private val dateTV by lazy { findViewById<TextView>(R.id.date) }
+    private val monthTV by lazy { findViewById<TextView>(R.id.month) }
+    private val marketNameTV by lazy { findViewById<TextView>(R.id.marketName) }
+    private val orderNameTV by lazy { findViewById<TextView>(R.id.orderName) }
+    private val productStateTV by lazy { findViewById<TextView>(R.id.productState) }
+    private val productPriceTV by lazy { findViewById<TextView>(R.id.productPrice) }
 
     init {
         inflate(context, R.layout.order, this)
-        dateTV = findViewById(R.id.date)
-        monthTV = findViewById(R.id.month)
-        marketNameTV = findViewById(R.id.marketName)
-        orderNameTV = findViewById(R.id.orderName)
-        productStateTV = findViewById(R.id.productState)
-        productPriceTV = findViewById(R.id.productPrice)
         orientation = VERTICAL
     }
 
@@ -57,6 +51,14 @@ class Order @JvmOverloads constructor(
     @TextProp
     fun setProductState(productState: CharSequence) {
         productStateTV.text = productState
+        productStateTV.setTextColor(ContextCompat.getColor(context,
+            when(productState) {
+                "Yolda" -> R.color.cargo
+                "Hazırlanıyor" -> R.color.preparing
+                "Onay Bekliyor" -> R.color.waiting_for_approve
+                else -> android.R.color.darker_gray
+            }
+        ))
     }
 
     @TextProp
@@ -65,7 +67,7 @@ class Order @JvmOverloads constructor(
     }
 
     @CallbackProp
-    override fun setOnClickListener(clickListener: OnClickListener?) {
-        super.setOnClickListener(clickListener)
+    fun setOnOrderExpanded(clickListener: OnClickListener?) {
+        setOnClickListener(clickListener)
     }
 }
