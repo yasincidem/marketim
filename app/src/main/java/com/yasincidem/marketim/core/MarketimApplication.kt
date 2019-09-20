@@ -1,13 +1,16 @@
 package com.yasincidem.marketim.core
 
 import android.app.Application
+import android.content.SharedPreferences
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.yasincidem.marketim.R
 import com.yasincidem.marketim.network.OrderListService
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -52,4 +55,16 @@ private val orderListServiceModule = module {
         //get() eager olan ve Koin container'ından instance çeken bir metot
         get<Retrofit>().create(OrderListService::class.java)
     }
+
+    single {
+        getSharedPrefs(androidApplication())
+    }
+
+    single<SharedPreferences.Editor> {
+        getSharedPrefs(androidApplication()).edit()
+    }
+}
+
+private fun getSharedPrefs(androidApplication: Application): SharedPreferences {
+    return  androidApplication.getSharedPreferences("default",  android.content.Context.MODE_PRIVATE)
 }
