@@ -6,11 +6,13 @@
     <fragment
         android:id="@+id/main"
         android:name="com.yasincidem.marketim.features.orderlist.OrderListEpoxyFragment"
+        tools:layout="@layout/order"
         android:label="OrderList">
     </fragment>
     <fragment
         android:id="@+id/login_page_nav"
         android:name="com.yasincidem.marketim.features.login.LoginFormFragment"
+        tools:layout="@layout/fragment_login_form"
         android:label="LoginForm">
         <action
             android:id="@+id/action_login_page_nav_to_main"
@@ -18,7 +20,9 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/login_page_nav"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>
