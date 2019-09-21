@@ -2,7 +2,8 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="android.widget.ScrollView">
+    tools:parentTag="android.widget.LinearLayout">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,13 +15,13 @@
             android:layout_marginTop="32dp"
             android:ems="10"
             android:hint="@string/username"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline2"
-            tools:text="kariyer"
-            android:importantForAutofill="no" />
+            tools:text="kariyer" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
@@ -33,18 +34,20 @@
             android:id="@+id/password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:layout_marginTop="32dp"
             android:ems="10"
             android:hint="@string/password"
+            android:importantForAutofill="no"
             android:inputType="textPassword"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/username"
-            tools:text="2019ADev"
-            android:importantForAutofill="no" />
+            tools:text="2019ADev" />
 
         <TextView
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
@@ -59,8 +62,9 @@
             android:id="@+id/remember_me"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:text="@string/rememberme"
+            android:textColor="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="@+id/password"
             app:layout_constraintTop_toBottomOf="@+id/password"
             tools:text="Beni Hatırla  " />
@@ -69,10 +73,18 @@
             android:id="@+id/login_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:text="@string/login"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toEndOf="@+id/password"
             app:layout_constraintStart_toStartOf="@+id/password"
             app:layout_constraintTop_toBottomOf="@+id/remember_me" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.8" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </merge>

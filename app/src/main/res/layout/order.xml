@@ -4,31 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:parentTag="android.widget.LinearLayout">
 
-<!--    <TextView-->
-<!--        android:id="@+id/title"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:paddingLeft="16dp"-->
-<!--        android:paddingRight="16dp"-->
-<!--        android:paddingTop="48dp"-->
-<!--        android:textColor="#484848"-->
-<!--        android:textSize="32sp"-->
-<!--        android:textStyle="bold"-->
-<!--        tools:text="Order"/>-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/subtitle"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:paddingLeft="16dp"-->
-<!--        android:paddingRight="16dp"-->
-<!--        android:paddingTop="4dp"-->
-<!--        android:textSize="16sp"/>-->
-
-<!--    <Space-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="24dp"/>-->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -84,7 +59,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toEndOf="@+id/date"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Market 1" />
+            tools:text="Market 1 Market 1  Market 1 Market 1 Market 1 Market 1 Market 1 Market 1 Market 1 Market 1 Market 1 " />
 
         <TextView
             android:id="@+id/orderName"
@@ -103,8 +78,10 @@
 
         <TextView
             android:id="@+id/productPrice"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -118,12 +95,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:textColor="#FF5722"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintStart_toEndOf="@+id/product_state_icon"
             app:layout_constraintTop_toBottomOf="@+id/orderName"
+            app:layout_constraintVertical_bias="0.565"
             tools:text="Hazırlanıyor" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -132,6 +111,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.8" />
+
+        <ImageView
+            android:id="@+id/product_state_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/orderName"
+            android:src="@mipmap/ic_action_tracking_1" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
