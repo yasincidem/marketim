@@ -54,6 +54,7 @@ class OrderListEpoxyFragment : BaseEpoxyFragment() {
                 orderName(order.orderName)
                 productState(order.productState)
                 productPrice(order.productPrice.toString())
+                productStateIcon(order.productState)
                 onOrderExpanded {
                     _ ->
                     run {
@@ -67,6 +68,7 @@ class OrderListEpoxyFragment : BaseEpoxyFragment() {
                     id("orderDetail$index")
                     orderDetail(order.productDetail.orderDetail)
                     summaryPrice(order.productDetail.summaryPrice.toString())
+                    backgroundColor(order.productState)
                 }
             }
         }
