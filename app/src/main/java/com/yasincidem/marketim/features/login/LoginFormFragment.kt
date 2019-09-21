@@ -31,14 +31,23 @@ class LoginFormFragment: BaseEpoxyFragment() {
             password(state.password)
             onBind { _, view, _ ->
                 view.setLoginButtonClickListener(clickListener = View.OnClickListener {
-                    if (state.username.trim() == getString(R.string.credential_username) && state.password == getString(R.string.credential_password)) {
+                    if (loginFormViewModel.validateForm(
+                            state.username,
+                            getString(R.string.credential_username),
+                            state.password,
+                            getString(R.string.credential_password)))
                         view?.findNavController()?.navigate(R.id.action_login_page_nav_to_main)
-                    } else {
+                    else
                         Toast.makeText(context, getString(R.string.wrong_credentials_warning), Toast.LENGTH_LONG).show()
-                    }
                 })
                 view.setRememberMeChangeListener(checkedChangeListener = CompoundButton.OnCheckedChangeListener { _, isChecked ->
-                    loginFormViewModel.setIfUserWillRemembered(isChecked)
+                    if (isChecked &&
+                        loginFormViewModel.validateForm(
+                            state.username,
+                            getString(R.string.credential_username),
+                            state.password,
+                            getString(R.string.credential_password)))
+                        loginFormViewModel.setIfUserWillRemembered(isChecked)
                 })
             }
             onUsernameChanged { loginFormViewModel.setUsername(it) }

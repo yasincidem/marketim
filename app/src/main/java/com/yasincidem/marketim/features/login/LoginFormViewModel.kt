@@ -26,6 +26,9 @@ class LoginFormViewModel(
         sharedPreferencesEditor.apply()
     }
 
+    fun validateForm(username: String, expectedUsername: String, password: String, expectedPassword: String) =
+         (username.trim() == expectedUsername) and (password == expectedPassword)
+
     companion object : MvRxViewModelFactory<LoginFormViewModel, LoginFormState> {
         override fun create(viewModelContext: ViewModelContext, state: LoginFormState): LoginFormViewModel {
             val sharedPreferences: SharedPreferences by viewModelContext.activity.inject()
