@@ -66,5 +66,5 @@ private val orderListServiceModule = module {
 }
 
 private fun getSharedPrefs(androidApplication: Application): SharedPreferences {
-    return  androidApplication.getSharedPreferences("default",  android.content.Context.MODE_PRIVATE)
+    return  androidApplication.getSharedPreferences(androidApplication.getString(R.string.shared_pref),  android.content.Context.MODE_PRIVATE)
 }
