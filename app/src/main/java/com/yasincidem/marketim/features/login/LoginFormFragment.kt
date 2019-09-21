@@ -1,6 +1,10 @@
 package com.yasincidem.marketim.features.login
 
+import android.content.Context
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.navigation.findNavController
 import com.airbnb.mvrx.fragmentViewModel
@@ -13,9 +17,11 @@ import com.yasincidem.marketim.views.loginForm
 class LoginFormFragment: BaseEpoxyFragment() {
     private val loginFormViewModel: LoginFormViewModel by fragmentViewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        activity?.title = getString(R.string.login_form_fragment_title)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (loginFormViewModel.isUserAlreadyLoggedIn()) {
+            view.findNavController().navigate(R.id.action_login_page_nav_to_main)
+        }
     }
 
     override fun epoxyController(): MvRxEpoxyController = simpleController(loginFormViewModel) {state ->
@@ -23,14 +29,27 @@ class LoginFormFragment: BaseEpoxyFragment() {
             id("loginForm")
             username(state.username)
             password(state.password)
+            onBind { _, view, _ ->
+                view.setLoginButtonClickListener(clickListener = View.OnClickListener {
+                    if (state.username.trim() == getString(R.string.credential_username) && state.password == getString(R.string.credential_password)) {
+                        view?.findNavController()?.navigate(R.id.action_login_page_nav_to_main)
+                    } else {
+                        Toast.makeText(context, getString(R.string.wrong_credentials_warning), Toast.LENGTH_LONG).show()
+                    }
+                })
+                view.setRememberMeChangeListener(checkedChangeListener = CompoundButton.OnCheckedChangeListener { _, isChecked ->
+                    loginFormViewModel.setIfUserWillRemembered(isChecked)
+                })
+            }
             onUsernameChanged { loginFormViewModel.setUsername(it) }
             onPasswordChanged { loginFormViewModel.setPassword(it) }
-            loginButtonClickListener { _ ->
-//                if (state.username == getString(R.string.credential_username) && state.password == getString(R.string.credential_password))
-                    view?.findNavController()?.navigate(R.id.action_login_page_nav_to_main)
-//                else
-//                    Toast.makeText(context, getString(R.string.wrong_credentials_warning), Toast.LENGTH_LONG).show()
-            }
+
         }
+    }
+
+    override fun onDestroyView() {
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
+        super.onDestroyView()
     }
 }
