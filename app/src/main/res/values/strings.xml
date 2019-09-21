@@ -29,4 +29,5 @@
     <string name="log_out_alert_warning_message">Çıkış yapmak istediğinizden emin misiniz?</string>
     <string name="log_out_alert_warning_yes">Eminim</string>
     <string name="log_out_alert_warning_no">Vazgeç</string>
+    <string name="shared_pref">marketim_shared_preferences</string>
 </resources>
