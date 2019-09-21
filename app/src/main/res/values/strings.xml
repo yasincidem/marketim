@@ -24,4 +24,9 @@
     <string name="credential_password">2019ADev</string>
     <string name="login_form_fragment_title">Giriş Formu</string>
     <string name="order_list_fragment_title">Siparişlerim</string>
+    <string name="you_are_already_viewing_my_orders">Şu an siparişlerinizi görüntülüyorsunuz.</string>
+    <string name="log_out">Çıkış Yap</string>
+    <string name="log_out_alert_warning_message">Çıkış yapmak istediğinizden emin misiniz?</string>
+    <string name="log_out_alert_warning_yes">Eminim</string>
+    <string name="log_out_alert_warning_no">Vazgeç</string>
 </resources>
