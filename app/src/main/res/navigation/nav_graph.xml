@@ -8,6 +8,16 @@
         android:name="com.yasincidem.marketim.features.orderlist.OrderListEpoxyFragment"
         tools:layout="@layout/order"
         android:label="OrderList">
+        <action
+            android:id="@+id/action_main_to_login_page_nav"
+            app:destination="@id/login_page_nav"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/main"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/login_page_nav"
@@ -21,6 +31,7 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:launchSingleTop="false"
             app:popUpTo="@id/login_page_nav"
             app:popUpToInclusive="true" />
     </fragment>
