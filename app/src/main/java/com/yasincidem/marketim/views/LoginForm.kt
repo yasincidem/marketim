@@ -6,20 +6,22 @@ import android.text.Spanned
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.widget.*
-import com.airbnb.epoxy.*
-import com.google.android.material.textfield.TextInputEditText
+import com.airbnb.epoxy.CallbackProp
+import com.airbnb.epoxy.ModelProp
+import com.airbnb.epoxy.ModelView
+import com.airbnb.epoxy.TextProp
 import com.yasincidem.marketim.R
 
 
-@ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_MATCH_HEIGHT, fullSpan = true, saveViewState = true)
+@ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_MATCH_HEIGHT, saveViewState = true)
 class LoginForm @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : ScrollView(context, attrs, defStyleAttr) {
+) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private val usernameET by lazy { findViewById<TextInputEditText>(R.id.username) }
-    private val passwordET by lazy { findViewById<TextInputEditText>(R.id.password) }
+    private val usernameET by lazy { findViewById<EditText>(R.id.username) }
+    private val passwordET by lazy { findViewById<EditText>(R.id.password) }
     private val rememberMeSwitch by lazy { findViewById<Switch>(R.id.remember_me) }
     private  val loginButton by lazy { findViewById<Button>(R.id.login_button) }
 
