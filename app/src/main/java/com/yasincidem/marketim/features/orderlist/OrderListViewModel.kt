@@ -1,5 +1,6 @@
 package com.yasincidem.marketim.features.orderlist
 
+import android.content.SharedPreferences
 import com.airbnb.mvrx.MvRxViewModelFactory
 import com.airbnb.mvrx.ViewModelContext
 import com.yasincidem.marketim.core.MvRxViewModel
@@ -9,7 +10,8 @@ import org.koin.android.ext.android.inject
 
 class OrderListViewModel(
     initialState: OrderListState,
-    private val orderListService: OrderListService
+    private val orderListService: OrderListService,
+    private val sharedPreferencesEditor: SharedPreferences.Editor
 ) : MvRxViewModel<OrderListState>(initialState) {
 
     init {
@@ -26,10 +28,16 @@ class OrderListViewModel(
         setState { copy(isExpanded = !isExpanded) }
     }
 
+    fun setIfUserWillRemembered(value: Boolean) {
+        sharedPreferencesEditor.putBoolean("remember_me", value)
+        sharedPreferencesEditor.apply()
+    }
+
     companion object : MvRxViewModelFactory<OrderListViewModel, OrderListState> {
         override fun create(viewModelContext: ViewModelContext, state: OrderListState): OrderListViewModel {
             val service: OrderListService by viewModelContext.activity.inject()
-            return OrderListViewModel(state, service)
+            val sharedPreferencesEditor: SharedPreferences.Editor by viewModelContext.activity.inject()
+            return OrderListViewModel(state, service, sharedPreferencesEditor)
         }
     }
 }
