@@ -2,7 +2,9 @@ package com.yasincidem.marketim.views
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.*
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.airbnb.epoxy.CallbackProp
 import com.airbnb.epoxy.ModelView
@@ -22,6 +24,7 @@ class Order @JvmOverloads constructor(
     private val orderNameTV by lazy { findViewById<TextView>(R.id.orderName) }
     private val productStateTV by lazy { findViewById<TextView>(R.id.productState) }
     private val productPriceTV by lazy { findViewById<TextView>(R.id.productPrice) }
+    private val productStateIconIV by lazy { findViewById<ImageView>(R.id.product_state_icon) }
 
     init {
         inflate(context, R.layout.order, this)
@@ -59,6 +62,19 @@ class Order @JvmOverloads constructor(
                 else -> android.R.color.darker_gray
             }
         ))
+    }
+
+
+    @TextProp
+    fun setProductStateIcon(productState: CharSequence) {
+        productStateIconIV.setImageResource(
+            when(productState) {
+                "Yolda" -> R.mipmap.ic_action_tracking_1
+                "Hazırlanıyor" -> R.mipmap.ic_action_stopwatch
+                "Onay Bekliyor" -> R.mipmap.ic_action_validation_1
+                else -> android.R.mipmap.sym_def_app_icon
+            }
+        )
     }
 
     @TextProp

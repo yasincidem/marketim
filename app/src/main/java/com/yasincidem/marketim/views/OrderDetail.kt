@@ -1,9 +1,11 @@
 package com.yasincidem.marketim.views
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.airbnb.epoxy.ModelView
 import com.airbnb.epoxy.TextProp
 import com.yasincidem.marketim.R
@@ -33,4 +35,17 @@ class OrderDetail @JvmOverloads constructor(
         summaryPriceTV.text = summaryPrice
     }
 
+    @TextProp
+    fun setBackgroundColor(productState: CharSequence) {
+        setBackgroundColor(Color.parseColor(
+            "#" + Integer.toHexString(ContextCompat.getColor(context,
+                when(productState) {
+                    "Yolda" -> R.color.cargo
+                    "Hazırlanıyor" -> R.color.preparing
+                    "Onay Bekliyor" -> R.color.waiting_for_approve
+                    else -> android.R.color.darker_gray
+                }
+            ) and 0x00ffffff))
+        )
+    }
 }
