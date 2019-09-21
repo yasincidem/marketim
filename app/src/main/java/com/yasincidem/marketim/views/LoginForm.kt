@@ -6,23 +6,22 @@ import android.text.Spanned
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.widget.*
-import com.airbnb.epoxy.CallbackProp
-import com.airbnb.epoxy.ModelView
-import com.airbnb.epoxy.TextProp
+import com.airbnb.epoxy.*
+import com.google.android.material.textfield.TextInputEditText
 import com.yasincidem.marketim.R
 
 
-@ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_MATCH_HEIGHT)
+@ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_MATCH_HEIGHT, fullSpan = true, saveViewState = true)
 class LoginForm @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ScrollView(context, attrs, defStyleAttr) {
 
-    private val usernameET by lazy { findViewById<EditText>(R.id.username) }
-    private val passwordET by lazy { findViewById<EditText>(R.id.password) }
+    private val usernameET by lazy { findViewById<TextInputEditText>(R.id.username) }
+    private val passwordET by lazy { findViewById<TextInputEditText>(R.id.password) }
     private val rememberMeSwitch by lazy { findViewById<Switch>(R.id.remember_me) }
-    private val loginButton by lazy { findViewById<Button>(R.id.login_button) }
+    private  val loginButton by lazy { findViewById<Button>(R.id.login_button) }
 
     private val usernameWatcher: TextWatcher = SimpleTextWatcher { onUsernameChanged?.invoke(it) }
     private val passwordWatcher: TextWatcher = SimpleTextWatcher { onPasswordChanged?.invoke(it) }
@@ -35,12 +34,12 @@ class LoginForm @JvmOverloads constructor(
 
     @TextProp
     fun setUsername(username: CharSequence?) {
-        usernameET.setTextIfDifferent(username)
+        usernameET.setTextAndCursor(username)
     }
 
     @TextProp
     fun setPassword(password: CharSequence?) {
-        passwordET.setTextIfDifferent(password)
+        passwordET.setTextAndCursor(password)
     }
 
     @set:CallbackProp
@@ -49,29 +48,35 @@ class LoginForm @JvmOverloads constructor(
     @set:CallbackProp
     var onPasswordChanged: ((newText: String) -> Unit)? = null
 
-    @CallbackProp
+    @ModelProp(ModelProp.Option.DoNotHash)
     fun setLoginButtonClickListener(clickListener: OnClickListener?) {
         loginButton.setOnClickListener(clickListener)
     }
 
-    @CallbackProp
+    @ModelProp(ModelProp.Option.DoNotHash)
     fun setRememberMeChangeListener(checkedChangeListener: CompoundButton.OnCheckedChangeListener?) {
         rememberMeSwitch.setOnCheckedChangeListener(checkedChangeListener)
     }
 
 }
 
-fun EditText.setTextIfDifferent(newText: CharSequence?): Boolean {
-    if (!isTextDifferent(newText, text)) {
+fun EditText.setTextAndCursor(text: CharSequence?) {
+    if(setText(this, text) ) {
+        this.setSelection(this.length())
+    }
+}
+
+private fun setText(textView: TextView, text: CharSequence?): Boolean {
+    if (!isTextDifferent(text, textView.text)) {
         return false
     }
 
-    setText(newText)
-    setSelection(newText?.length ?: 0)
+    textView.text = text
+
     return true
 }
 
-fun isTextDifferent(str1: CharSequence?, str2: CharSequence?): Boolean {
+private fun isTextDifferent(str1: CharSequence?, str2: CharSequence?): Boolean {
     if (str1 === str2) {
         return false
     }
