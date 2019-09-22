@@ -22,7 +22,6 @@ class LoginForm @JvmOverloads constructor(
 
     private val usernameET by lazy { findViewById<EditText>(R.id.username) }
     private val passwordET by lazy { findViewById<EditText>(R.id.password) }
-    private val rememberMeSwitch by lazy { findViewById<Switch>(R.id.remember_me) }
     private  val loginButton by lazy { findViewById<Button>(R.id.login_button) }
 
     private val usernameWatcher: TextWatcher = SimpleTextWatcher { onUsernameChanged?.invoke(it) }
@@ -54,12 +53,6 @@ class LoginForm @JvmOverloads constructor(
     fun setLoginButtonClickListener(clickListener: OnClickListener?) {
         loginButton.setOnClickListener(clickListener)
     }
-
-    @ModelProp(ModelProp.Option.DoNotHash)
-    fun setRememberMeChangeListener(checkedChangeListener: CompoundButton.OnCheckedChangeListener?) {
-        rememberMeSwitch.setOnCheckedChangeListener(checkedChangeListener)
-    }
-
 }
 
 fun EditText.setTextAndCursor(text: CharSequence?) {

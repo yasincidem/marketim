@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.CompoundButton
+import android.widget.Switch
 import android.widget.Toast
 import androidx.navigation.findNavController
 import com.airbnb.mvrx.fragmentViewModel
@@ -35,19 +35,12 @@ class LoginFormFragment: BaseEpoxyFragment() {
                             state.username,
                             getString(R.string.credential_username),
                             state.password,
-                            getString(R.string.credential_password)))
+                            getString(R.string.credential_password))){
+                        loginFormViewModel.setIfUserWillRememberedSharedPref(view.findViewById<Switch>(R.id.remember_me).isChecked)
                         view?.findNavController()?.navigate(R.id.action_login_page_nav_to_main)
+                    }
                     else
                         Toast.makeText(context, getString(R.string.wrong_credentials_warning), Toast.LENGTH_LONG).show()
-                })
-                view.setRememberMeChangeListener(checkedChangeListener = CompoundButton.OnCheckedChangeListener { _, isChecked ->
-                    if (isChecked &&
-                        loginFormViewModel.validateForm(
-                            state.username,
-                            getString(R.string.credential_username),
-                            state.password,
-                            getString(R.string.credential_password)))
-                        loginFormViewModel.setIfUserWillRemembered(isChecked)
                 })
             }
             onUsernameChanged { loginFormViewModel.setUsername(it) }

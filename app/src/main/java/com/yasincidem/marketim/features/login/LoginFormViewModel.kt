@@ -21,7 +21,7 @@ class LoginFormViewModel(
 
     fun isUserAlreadyLoggedIn() = sharedPreferences.getBoolean("remember_me", false)
 
-    fun setIfUserWillRemembered(value: Boolean) {
+    fun setIfUserWillRememberedSharedPref(value: Boolean) {
         sharedPreferencesEditor.putBoolean("remember_me", value)
         sharedPreferencesEditor.apply()
     }
