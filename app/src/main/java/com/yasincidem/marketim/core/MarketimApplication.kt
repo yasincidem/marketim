@@ -1,7 +1,10 @@
 package com.yasincidem.marketim.core
 
 import android.app.Application
+import android.content.Context
 import android.content.SharedPreferences
+import androidx.multidex.MultiDex
+import androidx.multidex.MultiDexApplication
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.yasincidem.marketim.R
@@ -16,7 +19,11 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class MarketimApplication: Application() {
+class MarketimApplication: MultiDexApplication() {
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+    }
     override fun onCreate() {
         super.onCreate()
         /**
